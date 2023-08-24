@@ -1,0 +1,25 @@
+type Author {
+    id: ID!
+    name: String!
+    age: Int!
+}
+
+type Query {
+    findAllAuthors: [Author!]!
+}
+
+type Mutation {
+    createAuthor(authorInput: AuthorInput): Author
+    updateAuthor(authorUpdateInput: AuthorUpdateInput): Author
+}
+
+input AuthorInput{
+    name: String
+    age: Int
+}
+
+input AuthorUpdateInput{
+    id: ID
+    name: String
+    age: Int
+}
