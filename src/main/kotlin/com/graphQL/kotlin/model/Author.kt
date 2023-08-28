@@ -12,5 +12,8 @@ data class Author (
     var name: String?,
 
     @Column(name = "age")
-    var age: Int?
+    var age: Int?,
+
+    @OneToMany(mappedBy = "author")
+    val tutorials: List<Tutorial> = mutableListOf()
 )
