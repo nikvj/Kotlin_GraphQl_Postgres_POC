@@ -2,7 +2,7 @@ type Tutorial {
     id: ID!
     title: String!
     description: String
-    author: Author!
+    author: Author
 }
 
 extend type Query {
@@ -18,11 +18,12 @@ extend type Mutation {
 input TutorialInput{
     title: String!,
     description: String,
-    authorId: ID!
+    authorId: ID
 }
 
 input TutorialUpdateInput{
     id: ID!,
     title: String,
-    description: String
+    description: String,
+    authorId: Int
 }

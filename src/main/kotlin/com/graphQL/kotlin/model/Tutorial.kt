@@ -15,7 +15,7 @@ class Tutorial (
     var description: String,
 
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false, updatable = false)
+    @JoinColumn(name = "author_id")
     var author: Author?
 ){
     override fun equals(other: Any?): Boolean {

@@ -55,10 +55,12 @@ class Resolver(authorRepository: AuthorRepository,
     @MutationMapping
     fun updateTutorial(@Argument tutorialUpdateInput: TutorialUpdateRequestModel): Tutorial {
         val optTutorial: Optional<Tutorial?> = tutorialRepository.findById(tutorialUpdateInput.id)
+        val optAuthor: Optional<Author?> = authorRepository.findById(tutorialUpdateInput.authorId)
         if (optTutorial.isPresent) {
             val tutorial = optTutorial.get()
             tutorial.title = tutorialUpdateInput.title
             tutorial.description = tutorialUpdateInput.description
+            tutorial.author = optAuthor.get()
             tutorialRepository.save(tutorial)
             return tutorial
         }
