@@ -79,7 +79,7 @@ class ResolverTest {
     @Test
     fun `test updateTutorial when tutorial exists`() {
         val tutorialId = 1
-        val tutorialUpdateInput = TutorialUpdateRequestModel(tutorialId, "Updated Title", "Updated Description")
+        val tutorialUpdateInput = TutorialUpdateRequestModel(tutorialId, "Updated Title", "Updated Description", authorId = 1)
         val author = Author(1, "Author1", 30)
         val existingTutorial = Optional.of(Tutorial(tutorialId, "Title", "Description", author))
         Mockito.`when`(tutorialRepository.findById(tutorialId)).thenReturn(existingTutorial.map { it })
@@ -99,7 +99,7 @@ class ResolverTest {
     @Test
     fun `test updateTutorial when tutorial does not exist`() {
         val tutorialId = 1
-        val tutorialUpdateInput = TutorialUpdateRequestModel(tutorialId, "Updated Title", "Updated Description")
+        val tutorialUpdateInput = TutorialUpdateRequestModel(tutorialId, "Updated Title", "Updated Description", authorId = 1)
         Mockito.`when`(tutorialRepository.findById(tutorialId)).thenReturn(Optional.empty<Tutorial>().map { it })
 
         assertThrows<ChangeSetPersister.NotFoundException> {
