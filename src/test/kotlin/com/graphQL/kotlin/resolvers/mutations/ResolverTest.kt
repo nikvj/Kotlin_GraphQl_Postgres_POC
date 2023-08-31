@@ -83,6 +83,7 @@ class ResolverTest {
         val author = Author(1, "Author1", 30)
         val existingTutorial = Optional.of(Tutorial(tutorialId, "Title", "Description", author))
         Mockito.`when`(tutorialRepository.findById(tutorialId)).thenReturn(existingTutorial.map { it })
+        Mockito.`when`(authorRepository.findById(tutorialUpdateInput.authorId)).thenReturn(Optional.of(author))
         Mockito.`when`(tutorialRepository.save(ArgumentMatchers.any(Tutorial::class.java))).thenAnswer { it.arguments[0] }
 
         resolver.updateTutorial(tutorialUpdateInput)
